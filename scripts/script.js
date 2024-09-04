@@ -1,26 +1,8 @@
-
-function agendarDate() {
+function enviarParaWhatsApp() {
     const dateOption = document.getElementById('date-options').value;
-    const eventDate = '20240907T230000Z'; // Data e hora no formato YYYYMMDDTHHMMSSZ (Z = UTC)
-    const eventEndDate = '20240907T235900Z'; // Ajuste a data final conforme necessário
+    const telefone = '5553981364363'; // Coloque seu número de WhatsApp aqui (incluindo o código do país)
+    const mensagem = `Oi amor, eu escolhi: ${dateOption} para o nosso date!`;
 
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-SUMMARY:${dateOption}
-DTSTART:${eventDate}
-DTEND:${eventEndDate}
-LOCATION:Ao lado do Lucas
-DESCRIPTION:Um momento especial com você.
-END:VEVENT
-END:VCALENDAR`;
-
-    const blob = new Blob([icsContent], { type: 'text/calendar' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'convite_date.ics';
-    a.click();
-    URL.revokeObjectURL(url);
+    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+    window.location.href = url;
 }
